@@ -1,13 +1,31 @@
+body{
+    padding: 0%;
+    margin: 0%;
+}
+
 .mainContent{
     background-color: rgb(223, 216, 216);
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
     font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
     /* position: relative;  */
     height: 100vh;
+    background-color: rgb(255, 241, 222);
+}
+
+.notOrder{
+    display: flex;
+    flex-direction: column;
+}
+
+.all{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    background-color: rgb(255, 241, 222);
 }
 
 .downBage{
@@ -19,26 +37,58 @@
 .upperBage{
     position: fixed;
     top: 0em;
-    left: 3em;
+}
+
+.bage{
+    background-color: orange;
+    color: white;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    left: 1em;
 }
 
 .header {
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     left: 0;
     right: 0;
-    width: 100%;
-    background-color: #4a4a4aa7;
-    z-index: 1000;
-    /* padding: 1em; */
+    /* width: 100%; */
+    background-color: #4a4a4ae6;
+    color: rgb(186, 182, 182);
+    padding: 0.5em;
     /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  */
+}
+
+.upperHeaderPart{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.headerTextUpper, .headerPizza{
+    margin-left: 7em;
+
+}
+
+.headerTextUpper span{
+    margin-right: 1em;
+}
+
+.phoneNumber{
+    font-weight: bold;
+}
+
+
+.enterButton {
+    margin-right: 1em;
 }
 
 .navigation{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 3em; /*Відступ від верхнього заголовка*/
+    margin-top: 0em; /*Відступ від верхнього заголовка*/
+    background-color: white;
 }
 
 .pizzaInfo{
@@ -62,7 +112,8 @@
 
 .order {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    /* align-items: center; */
     position: relative;
     overflow: hidden;
     padding-right: 50%; /* Місце для частини зображення */
@@ -73,6 +124,129 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100vh;
-    padding: 1em;
+    /* padding: 0%; */
     box-sizing: border-box;
+    max-width: 30em;
+    background-color: white;
+}
+
+.orders{
+    display:flex;
+}
+
+.priceAndButtons{
+    display: flex;
+    flex-direction: row;
+}
+.orangeCircleSpan{
+    background-color: orange;
+    border-radius: 50%;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    margin-left: 0.2em;
+    color: white;
+}
+
+.navButtons button{
+    background-color: transparent;
+    border: 0%;
+    border-color: transparent;
+    color: rgb(255, 167, 3);
+    font-weight: bold;
+    border-radius: 1em;
+}
+.navButtons button:hover{
+    background-color: rgb(255, 166, 0);
+    color: white;
+}
+
+.roundB{
+    border-radius: 50%;
+    padding: 0.1em 1em;
+    border-style: outset;
+    color: white;
+    font-weight: bold;
+}
+.buttonPlus{
+    background-color: rgb(0, 255, 0);
+    border-color: rgb(0, 255, 0);
+}
+
+.buttonMinus{
+    background-color: red;
+    border-color: red;
+}
+.buttonX{
+    border-color: rgb(185, 181, 181);
+    color: orange;
+}
+
+.orangeButton{
+    background-color: orange;
+    color: white;
+    border-color: transparent;
+}
+
+.totalSum{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+.downSectionOrderSection{
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: gray;
+    background-color: white;
+}
+
+.pizza{
+    background-color: white;
+    padding: 1em;
+    max-width: 15em;
+}
+
+.pizza img{
+    width: 15em;
+}
+.pizzaInfo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 3em;
+}
+.subPizzaInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.downPizzaInfo{
+    margin-top: 1em;
+}
+.graySpan{
+    color: gray;
+}
+/* .productList{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+} */
+
+/* to bigger 1000 1010 */
+@media (max-width: 1003px) {
+
+    .roundB{
+        border-radius: 50%;
+        padding: 0em 1.1em;
+    }
+    .buttonPlus{
+        padding: 0.7em 1.1em;
+
+    }
 }
