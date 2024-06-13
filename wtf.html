@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrollable Div Example</title>
+    <style>
+        .orders {
+            max-height: 200px; /* Встановіть максимальну висоту контейнера */
+            overflow-y: auto; /* Додаємо вертикальну прокрутку при необхідності */
+            padding: 10px; /* Додаємо відступи всередині контейнера */
+        }
+
+        .orders::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .orders::-webkit-scrollbar-thumb {
+            background-color: darkgrey; /* Колір бігуна прокрутки */
+            border-radius: 10px; /* Закруглені краї бігуна прокрутки */
+        }
+
+        .orders::-webkit-scrollbar-track {
+            background: #f1f1f1; /* Колір треку прокрутки */
+            border-radius: 10px; /* Закруглені краї треку прокрутки */
+        }
+    </style>
+</head>
+<body>
+    <div class="orders">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque euismod lacus in mi consequat, nec viverra ipsum viverra. Etiam nec lectus ut arcu dapibus fermentum.</p>
+        <p>Curabitur tincidunt, risus at ultricies tincidunt, libero dolor luctus est, at ultrices arcu orci nec metus. Nam id dui at velit fermentum posuere. Cras efficitur velit at lacus dapibus, sit amet tincidunt risus gravida.</p>
+        <p>Nullam facilisis urna non diam volutpat, quis interdum nisl aliquam. Sed in tincidunt mi, at condimentum justo. Proin pharetra convallis eros, nec placerat eros efficitur ac. Nulla facilisi.</p>
+        <p>Suspendisse potenti. Integer sit amet justo vel orci vestibulum sollicitudin vel in ligula. Curabitur sit amet est odio. Nullam scelerisque quam ac ligula efficitur, id viverra mauris volutpat.</p>
+        <p>Morbi vulputate dapibus ex, eget euismod nisl tempor id. Proin nec risus a lacus dignissim varius. Fusce condimentum vehicula lorem, vitae vehicula elit sollicitudin at.</p>
+        <p>Aliquam erat volutpat. Integer nec magna nec leo vehicula interdum. Pellentesque vel suscipit quam, nec sollicitudin felis.</p>
+        <p>Fusce efficitur odio id velit luctus, nec vulputate nisi efficitur. Nulla porttitor tellus ac orci pulvinar, et scelerisque sapien volutpat.</p>
+    </div>
+</body>
+</html>

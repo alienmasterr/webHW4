@@ -56,11 +56,13 @@
 
                     <span class="upperBageText">PIZZA</span>
                     <span class="upperBageText">KMA</span>
+                    <div class="leftUpTrianleBage"></div>
+                    <div class="rightUpTrianleBage"></div>
+
 
                 </div>
 
-
-                <section class="productList">
+                <section class="productList" id="pizza-container">
 
                     <div class="pizza">
                         <img src="images\pizza1.png" alt="піца">
@@ -75,9 +77,9 @@
                                     <span>370</span>
                                 </div>
                                 <div class="downPizzaInfo">
-                                    <span>99</span>
+                                    <h3 class="priceOfOne">99</h3>
                                     <span>грн</span>
-                                    <button class="orangeButton">Купити</button>
+                                    <button class="orangeButton buyOnePizza">Купити</button>
                                 </div>
                             </div>
 
@@ -87,13 +89,48 @@
                                     <span>660</span>
                                 </div>
                                 <div class="downPizzaInfo">
-                                    <span>169</span>
+                                    <h3 class="priceOfOne">169</h3>
                                     <span>грн</span>
-                                    <button class="orangeButton">Купити</button>
+                                    <button class="orangeButton buyOnePizza">Купити</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <section class="productList" id="pizza-container">
+
+                        <div class="pizza">
+                            <img src="images\pizza1.png" alt="піца">
+                            <h1>Імпреза</h1>
+                            <span class="graySpan">М'ясна піца</span>
+                            <p>Інгридиєнти Lorem, ipsum dolor sit amet consectetur adipisicing elit</p>
+    
+                            <div class="pizzaInfo">
+                                <div class="subPizzaInfo">
+                                    <div class="upPizzaInfo">
+                                        <span>30</span>
+                                        <span>370</span>
+                                    </div>
+                                    <div class="downPizzaInfo">
+                                        <h3 class="priceOfOne">99</h3>
+                                        <span>грн</span>
+                                        <button class="orangeButton buyOnePizza">Купити</button>
+                                    </div>
+                                </div>
+    
+                                <div class="subPizzaInfo">
+                                    <div class="upPizzaInfo">
+                                        <span>40</span>
+                                        <span>660</span>
+                                    </div>
+                                    <div class="downPizzaInfo">
+                                        <h3 class="priceOfOne">169</h3>
+                                        <span>грн</span>
+                                        <button class="orangeButton buyOnePizza">Купити</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                 </section>
             </div>
@@ -103,12 +140,13 @@
                 <p>Доставка не здійснюється</p>
             </footer>
         </div>
+
         <section class="orderSection">
 
             <div class="upperSectionOrderSection">
 
-                <span>Замовлення<span class="orangeCircleSpan">3</span></span>
-                <button>Очистити замовлення</button>
+                <h3>Замовлення<span class="orangeCircleSpan">3</span></h3>
+                <button class="cleanOrderButton">Очистити замовлення</button>
 
             </div>
 
@@ -116,7 +154,7 @@
 
                 <div class="order">
 
-                    <h3>BBQ (Мала)</h3>
+                    <h3 class="pizzaNameOrder">BBQ (Мала)</h3>
 
                     <div>
                         <span>30</span>
@@ -124,9 +162,9 @@
                     </div>
 
                     <div class="priceAndButtons">
-                        <span>500 грн</span>
+                        <span class="orderTextSpan">500грн</span>
                         <button class="roundB buttonMinus">-</button>
-                        <span>4</span>
+                        <span class="orderTextSpan">4</span>
                         <button class="roundB buttonPlus">+</button>
                         <button class="roundB buttonX">x</button>
                     </div>
@@ -136,15 +174,15 @@
 
                 </div>
 
+            
+
             </div>
-
-
 
             <div class="downSectionOrderSection">
 
                 <div class="totalSum">
-                    <span>Сума замовлення</span>
-                    <span>924 грн</span>
+                    <h3>Сума замовлення</h3>
+                    <h3 class="money">924грн</h3>
                 </div>
                 <button class="orderButton orangeButton">Замовити</button>
 
@@ -155,12 +193,15 @@
 
     <div class="downBage bage">
 
-        <span>ЦЬОГО ТИЖНЯ НА ВСЕ</span>
+        <div class="leftDownTrianleBage"></div>
+        <div class="rightDownTrianleBage"></div>
+
+        <span>ЦЬОГО</span><span>ТИЖНЯ НА ВСЕ</span>
         <span>-20%</span>
 
     </div>
     </div>
-
+<!-- <script src="pizza.js"></script> -->
 </body>
 
 </html>
