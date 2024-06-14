@@ -14,6 +14,9 @@ body {
     /* position: relative;  */
     height: 100vh;
     background-color: rgb(255, 241, 222);
+    padding-top:750px;
+    padding-bottom: 750px;
+    min-width: 300px; 
 }
 
 .notOrder {
@@ -64,7 +67,7 @@ body {
 }
 
 .header {
-    position: sticky;
+    position: sticky;/* ось */
     top: 0;
     left: 0;
     right: 0;
@@ -112,6 +115,7 @@ body {
 .pizzaInfo {
     display: flex;
     flex-direction: row;
+    
 }
 
 .downPizzaInfo,
@@ -122,8 +126,6 @@ body {
     display: flex;
     flex-direction: column;
 }
-
-.orderSection {}
 
 .order img {
     position: absolute;
@@ -141,8 +143,8 @@ body {
     position: relative;
     overflow: hidden;
     padding-right: 50%;
-    /* Місце для частини зображення */
     margin-top: 1em;
+
 }
 
 .orderSection {
@@ -159,7 +161,7 @@ body {
     padding-left: 0.5em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    min-width: 270px;
+    min-width: 300px;
     position: relative;
 
 }
@@ -178,6 +180,10 @@ body {
     top: -50%;
     left: 17%;
     transform: translate(-26%, 88%);
+}
+
+.pizza{
+    margin-bottom: 20px;
 }
 
 .rightDownTrianleBage {
@@ -305,7 +311,7 @@ body {
 }
 
 .downSectionOrderSection {
-    /* padding-left: 0.5em; */
+    padding-left: 2em;
     /* padding-right: 0.5em; */
     position: fixed;
     bottom: 0em;
@@ -342,8 +348,8 @@ body {
 .pizzaInfo {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    padding-right: 3em;
+    justify-content: center; /*було спейс бітвін тут*/
+    /* padding-right: 3em; */
 }
 
 .subPizzaInfo {
@@ -423,10 +429,54 @@ body {
     flex-wrap: wrap;
 }
 
+@media (max-width: 1436px){
+
+    .mainContent{
+        padding-top: 1100px;
+        padding-bottom: 1100px;
+
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    } 
+}
+
+@media (max-width: 1172px){
+
+    .mainContent{
+        padding-top: 1450px;
+        padding-bottom: 1450px;
+
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+  
+
+}
+
+@media (max-width: 1048px){
+
+    .mainContent{
+        padding-top: 2900px;
+        padding-bottom: 2900px;
+
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+   
+
+}
+
 /* to bigger 1000 1010 */
 @media (max-width: 1003px) {
 
-    .roundB {
+    
+
+    /* .roundB {
         border-radius: 50%;
         padding: 0em 1em;
 
@@ -438,12 +488,22 @@ body {
 
     .buttonMinus {
         padding: 0em 1.1em;
+        background-color: aqua;
        
-    }
+    } */
 
     .headerInfo{
         display: none;
     }
+
+    .downSectionOrderSection{
+        padding-left: 2em;
+    }
+
+    /* .buttonMinus {
+        background-color: aqua;
+       
+    } */
 
 }
 
@@ -466,6 +526,13 @@ body {
 
     .mainContent{
         justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .productList{
+        display: flex;
+        flex-direction: column;
     }
 
 }
