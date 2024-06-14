@@ -6,7 +6,7 @@ var pizza_info = [
         type: 'М’ясна піца',
         content: {
             meat: ['балик', 'салямі'],
-            chicken: ['куриця'],
+            chicken: ['курка'],
             cheese: ['сир моцарелла', 'сир рокфорд'],
             pineapple: ['ананаси'],
             additional: ['томатна паста', 'петрушка']
@@ -261,3 +261,8 @@ pizza_info.forEach(function(pizza) {
     var pizzaHTML = createPizzaHTML(pizza);
     pizzaContainer.appendChild(pizzaHTML);
 });
+
+
+function closeScreamer() {
+    document.getElementById('screamer').style.display = 'none';
+}
