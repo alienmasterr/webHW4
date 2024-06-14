@@ -127,14 +127,7 @@ body {
     flex-direction: column;
 }
 
-.order img {
-    position: absolute;
-    right: -30%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 50%;
-    /* max-width: none; */
-}
+
 
 .order {
     display: flex;
@@ -145,6 +138,15 @@ body {
     padding-right: 50%;
     margin-top: 1em;
 
+}
+
+.order img {
+    position: absolute;
+    right: -30%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50%;
+    /* max-width: none; */
 }
 
 .screamer {
@@ -199,6 +201,9 @@ body {
     min-width: 300px;
     position: relative;
 
+    /* overflow-y: scroll; */
+
+
 }
 
 .upperBage {
@@ -252,7 +257,6 @@ body {
     border-left: 0px solid transparent;
     border-right: 50px solid transparent;
     border-top: 30px solid orange;
-    /* Змінено з border-bottom на border-top */
     position: absolute;
     top: 61%;
     left: 21%;
@@ -262,7 +266,10 @@ body {
 .orders {
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
+
+    position: fixed;
+    width: 300px;
 }
 
 .priceAndButtons {
@@ -359,6 +366,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     color: gray;
     background-color: white;
 }
@@ -443,6 +451,7 @@ body {
 }
 
 .buyOnePizza {
+
     margin-top: 3em;
     padding: 0.5em;
 }
@@ -454,6 +463,11 @@ body {
     /* justify-content: center; */
     align-items: center;
     padding: 1em;
+
+}
+
+.pizzaIngredients{
+    height: 100px;
 }
 
 .productList{

@@ -195,6 +195,7 @@ function createPizzaHTML(pizza) {
         }
     }
     var ingredientsP = document.createElement('p');
+    ingredientsP.className = 'pizzaIngredients';
     ingredientsP.textContent = 'Інгредієнти: ' + ingredients.join(', ');
     div.appendChild(ingredientsP);
 
