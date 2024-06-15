@@ -170,100 +170,201 @@ var pizza_info = [
     }
 ];
 
+/*додавання піц  з масиву*/
 function createPizzaHTML(pizza) {
-    var div = document.createElement('div');
-    div.className = 'pizza';
+    const pizzaDiv = document.createElement('div');
+    pizzaDiv.classList.add('pizza');
 
-    var img = document.createElement('img');
-    img.src = pizza.icon;
-    img.alt = pizza.title;
-    div.appendChild(img);
+    const pizzaImg = document.createElement('img');
+    pizzaImg.src = pizza.icon;
+    pizzaImg.alt = pizza.title;
 
-    var h1 = document.createElement('h1');
-    h1.textContent = pizza.title;
-    div.appendChild(h1);
+    const pizzaTitle = document.createElement('h1');
+    pizzaTitle.textContent = pizza.title;
 
-    var typeSpan = document.createElement('span');
-    typeSpan.className = 'graySpan';
-    typeSpan.textContent = pizza.type;
-    div.appendChild(typeSpan);
+    const pizzaType = document.createElement('span');
+    pizzaType.classList.add('graySpan');
+    pizzaType.textContent = pizza.type;
 
-    var ingredients = [];
-    for (var key in pizza.content) {
-        if (pizza.content.hasOwnProperty(key)) {
-            ingredients = ingredients.concat(pizza.content[key]);
-        }
+    const pizzaContent = document.createElement('p');
+    const ingredients = [];
+    for (const category in pizza.content) {
+        ingredients.push(...pizza.content[category]);
     }
-    var ingredientsP = document.createElement('p');
-    ingredientsP.className = 'pizzaIngredients';
-    ingredientsP.textContent = 'Інгредієнти: ' + ingredients.join(', ');
-    div.appendChild(ingredientsP);
+    pizzaContent.textContent = `Інгредієнти: ${ingredients.join(', ')}`;
 
-    var pizzaInfo = document.createElement('div');
-    pizzaInfo.className = 'pizzaInfo';
+    pizzaDiv.appendChild(pizzaImg);
+    pizzaDiv.appendChild(pizzaTitle);
+    pizzaDiv.appendChild(pizzaType);
+    pizzaDiv.appendChild(pizzaContent);
+
+    const pizzaInfo = document.createElement('div');
+    pizzaInfo.classList.add('pizzaInfo');
 
     if (pizza.small_size) {
-        var smallSizeInfo = createSizeInfo(pizza.small_size);
-        pizzaInfo.appendChild(smallSizeInfo);
+        const subPizzaInfoSmall = document.createElement('div');
+        subPizzaInfoSmall.classList.add('subPizzaInfo');
+
+        const upPizzaInfoSmall = document.createElement('div');
+        upPizzaInfoSmall.classList.add('upPizzaInfo');
+        const smallSizeSpan = document.createElement('span');
+        smallSizeSpan.textContent = pizza.small_size.size;
+        const smallWeightSpan = document.createElement('span');
+        smallWeightSpan.textContent = pizza.small_size.weight;
+        upPizzaInfoSmall.appendChild(smallSizeSpan);
+        upPizzaInfoSmall.appendChild(smallWeightSpan);
+
+        const downPizzaInfoSmall = document.createElement('div');
+        downPizzaInfoSmall.classList.add('downPizzaInfo');
+        const smallPriceH3 = document.createElement('h3');
+        smallPriceH3.classList.add('priceOfOne');
+        smallPriceH3.textContent = pizza.small_size.price;
+        const smallCurrencySpan = document.createElement('span');
+        smallCurrencySpan.textContent = 'грн';
+        const smallBuyButton = document.createElement('button');
+        smallBuyButton.classList.add('orangeButton', 'buyOnePizza', 'buySmallPizza');
+        smallBuyButton.textContent = 'Купити';
+        downPizzaInfoSmall.appendChild(smallPriceH3);
+        downPizzaInfoSmall.appendChild(smallCurrencySpan);
+        downPizzaInfoSmall.appendChild(smallBuyButton);
+
+        subPizzaInfoSmall.appendChild(upPizzaInfoSmall);
+        subPizzaInfoSmall.appendChild(downPizzaInfoSmall);
+        pizzaInfo.appendChild(subPizzaInfoSmall);
     }
 
     if (pizza.big_size) {
-        var bigSizeInfo = createSizeInfo(pizza.big_size);
-        pizzaInfo.appendChild(bigSizeInfo);
+        const subPizzaInfoBig = document.createElement('div');
+        subPizzaInfoBig.classList.add('subPizzaInfo');
+
+        const upPizzaInfoBig = document.createElement('div');
+        upPizzaInfoBig.classList.add('upPizzaInfo');
+        const bigSizeSpan = document.createElement('span');
+        bigSizeSpan.textContent = pizza.big_size.size;
+        const bigWeightSpan = document.createElement('span');
+        bigWeightSpan.textContent = pizza.big_size.weight;
+        upPizzaInfoBig.appendChild(bigSizeSpan);
+        upPizzaInfoBig.appendChild(bigWeightSpan);
+
+        const downPizzaInfoBig = document.createElement('div');
+        downPizzaInfoBig.classList.add('downPizzaInfo');
+        const bigPriceH3 = document.createElement('h3');
+        bigPriceH3.classList.add('priceOfOne');
+        bigPriceH3.textContent = pizza.big_size.price;
+        const bigCurrencySpan = document.createElement('span');
+        bigCurrencySpan.textContent = 'грн';
+        const bigBuyButton = document.createElement('button');
+        bigBuyButton.classList.add('orangeButton', 'buyOnePizza', 'buyBigPizza');
+        bigBuyButton.textContent = 'Купити';
+        downPizzaInfoBig.appendChild(bigPriceH3);
+        downPizzaInfoBig.appendChild(bigCurrencySpan);
+        downPizzaInfoBig.appendChild(bigBuyButton);
+
+        subPizzaInfoBig.appendChild(upPizzaInfoBig);
+        subPizzaInfoBig.appendChild(downPizzaInfoBig);
+        pizzaInfo.appendChild(subPizzaInfoBig);
     }
 
-    div.appendChild(pizzaInfo);
+    pizzaDiv.appendChild(pizzaInfo);
 
-    return div;
+    return pizzaDiv;
 }
 
-function createSizeInfo(size) {
-    var subPizzaInfo = document.createElement('div');
-    subPizzaInfo.className = 'subPizzaInfo';
-
-    var upPizzaInfo = document.createElement('div');
-    upPizzaInfo.className = 'upPizzaInfo';
-
-    var sizeSpan = document.createElement('span');
-    sizeSpan.textContent = size.size + ' см';
-    upPizzaInfo.appendChild(sizeSpan);
-
-    var weightSpan = document.createElement('span');
-    weightSpan.textContent = size.weight + ' г';
-    upPizzaInfo.appendChild(weightSpan);
-
-    subPizzaInfo.appendChild(upPizzaInfo);
-
-    var downPizzaInfo = document.createElement('div');
-    downPizzaInfo.className = 'downPizzaInfo';
-
-    var priceH3 = document.createElement('h3');
-    priceH3.className = 'priceOfOne';
-    priceH3.textContent = size.price;
-    downPizzaInfo.appendChild(priceH3);
-
-    var currencySpan = document.createElement('span');
-    currencySpan.textContent = 'грн';
-    downPizzaInfo.appendChild(currencySpan);
-
-    var buyButton = document.createElement('button');
-    buyButton.className = 'orangeButton buyOnePizza';
-    buyButton.textContent = 'Купити';
-    downPizzaInfo.appendChild(buyButton);
-
-    subPizzaInfo.appendChild(downPizzaInfo);
-
-    return subPizzaInfo;
-}
-
-var pizzaContainer = document.getElementById('pizza-container');
+const pizzaContainer = document.getElementById('pizzaContainer');
+pizza_info.forEach(pizza => {
+    pizzaContainer.appendChild(createPizzaHTML(pizza));
+});
 
 pizza_info.forEach(function(pizza) {
     var pizzaHTML = createPizzaHTML(pizza);
     pizzaContainer.appendChild(pizzaHTML);
 });
 
+//функціонал кнопок покупки малих піц
+const buySmallPizzaButtons = document.querySelectorAll('.buySmallPizza');
+buySmallPizzaButtons.forEach(button => {
+    button.addEventListener('click', function (){
+        addPizzaToOrders(this, 'мала');
+    });
+});
 
-function closeScreamer() {
-    document.getElementById('screamer').style.display = 'none';
+const buyBigPizzaButtons = document.querySelectorAll('.buyBigPizza');
+buyBigPizzaButtons.forEach(button=> {
+    button.addEventListener('click', function(){
+        addPizzaToOrders(this, 'велика');
+    });
+});
+
+function createElementWithClassAndText(tag, classNames, textContent) {
+    const element = document.createElement(tag);
+    if (classNames) {
+        element.classList.add(...classNames.split(' '));
+    }
+    if (textContent) {
+        element.textContent = textContent;
+    }
+    return element;
 }
+
+function createImageElement(src, alt) {
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = alt;
+    return img;
+}
+
+// це оті дивні спани зі значками китайськими
+function createSpanBlock(firstSpanText, secondSpanText) {
+    const divForSpansOrder = document.createElement('div');
+    const spanOneForDivOrder = createElementWithClassAndText('span', '', `\u{29B5}${firstSpanText} `);
+    const spanTwoForDivOrder = createElementWithClassAndText('span', '', `\u{9165}${secondSpanText}`);
+
+    divForSpansOrder.append(spanOneForDivOrder, spanTwoForDivOrder);
+    return divForSpansOrder;
+}
+
+function createPriceAndButtonsBlock(priceText) {
+    const divPriceAndButtons = createElementWithClassAndText('div', 'priceAndButtons', '');
+    const orderTextSpan = createElementWithClassAndText('span', 'orderTextSpan', `${priceText}грн`);
+    const buttonMinus = createElementWithClassAndText('button', 'roundB buttonMinus', '-');
+    const numberOfBoughtPizzas = createElementWithClassAndText('span', 'orderTextSpan', '1');
+    const buttonPlus = createElementWithClassAndText('button', 'roundB buttonPlus', '+');
+    const buttonX = createElementWithClassAndText('button', 'roundB buttonX', 'x');
+
+    divPriceAndButtons.append(orderTextSpan, buttonMinus, numberOfBoughtPizzas, buttonPlus, buttonX);
+    return divPriceAndButtons;
+}
+
+// додавання нової піци до ордерс
+const addPizzaToOrders = function (button, string) {
+    const pizza = button.closest('.pizza');
+    const pizzaImg = pizza.querySelector('img');
+    const pizzaName = pizza.querySelector('h1').textContent;
+    const subPizzaInfo = button.closest('.subPizzaInfo');
+    const pizzaPrice = subPizzaInfo.querySelector('.priceOfOne').textContent;
+    const firstSpan = subPizzaInfo.querySelector('span:nth-of-type(1)').textContent;
+    const secondSpan = subPizzaInfo.querySelector('span:nth-of-type(2)').textContent;
+
+    const orders = document.querySelector('.orders');
+    const orderDiv = createElementWithClassAndText('div', 'order', '');
+    const pizzaImgOrder = createImageElement(pizzaImg.src, pizzaName);
+    const pizzaNameOrder = createElementWithClassAndText('h3', 'pizzaNameOrder', `${pizzaName} (${string})`);
+    const divForSpansOrder = createSpanBlock(firstSpan, secondSpan);
+    const divPriceAndButtons = createPriceAndButtonsBlock(pizzaPrice);
+
+    orderDiv.append(pizzaNameOrder, divForSpansOrder, divPriceAndButtons, pizzaImgOrder);
+    orders.appendChild(orderDiv);
+}
+
+
+
+// const closeScreamerButton = document.querySelector('.close-btn');
+// closeScreamerButton.addEventListener('click', function(){
+//     closeScreamer();
+// });
+// function closeScreamer() {
+//     document.getElementById('screamer').style.display = 'none';
+// }
+
+
+

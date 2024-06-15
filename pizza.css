@@ -14,8 +14,8 @@ body {
     /* position: relative;  */
     height: 100vh;
     background-color: rgb(255, 241, 222);
-    padding-top:750px;
-    padding-bottom: 750px;
+    padding-top:1450px;
+    padding-bottom: 1450px;
     min-width: 300px; 
 }
 
@@ -24,6 +24,18 @@ body {
     flex-direction: column;
     flex-grow: 10;
 
+}
+
+.redSpan {
+    background-color: red;
+    color: white;
+    border-radius: 20%;
+    padding: 5px 5px;
+    font-size: 15px;
+    position: absolute;
+    top: 90px;
+    right: 310px;
+    z-index: 2;
 }
 
 .all {
@@ -56,6 +68,7 @@ body {
     align-items: center;
     padding: 1em;
     max-height: 40px;
+    z-index: 4;
 }
 
 .bage {
@@ -75,6 +88,7 @@ body {
     background-color: #4a4a4a;
     color: rgb(186, 182, 182);
     padding: 0.5em;
+    z-index: 3;
     /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  */
 }
 
@@ -266,9 +280,9 @@ body {
 .orders {
     display: flex;
     flex-direction: column;
-    /* overflow-y: scroll; */
+    overflow-y: scroll;
 
-    position: fixed;
+    /* position: fixed; */
     width: 300px;
 }
 
@@ -327,9 +341,11 @@ body {
 }
 
 .orangeButton {
-    background-color: orange;
+    /* background-color: orange; */
+    background: linear-gradient(45deg, orange, rgb(234, 129, 0));
+
     color: white;
-    border-color: transparent;
+    border-color: rgb(234, 129, 0);
     border-radius: 0.5em;
 }
 
@@ -478,11 +494,11 @@ body {
     flex-wrap: wrap;
 }
 
-@media (max-width: 1436px){
+@media (max-width: 1481px){
 
     .mainContent{
-        padding-top: 1100px;
-        padding-bottom: 1100px;
+        padding-top: 2200px;
+        padding-bottom: 2200px;
 
         justify-content: center;
         display: flex;
@@ -493,8 +509,8 @@ body {
 @media (max-width: 1172px){
 
     .mainContent{
-        padding-top: 1450px;
-        padding-bottom: 1450px;
+        padding-top: 2900px;
+        padding-bottom: 2900px;
 
         justify-content: center;
         display: flex;
@@ -508,8 +524,8 @@ body {
 @media (max-width: 1048px){
 
     .mainContent{
-        padding-top: 2900px;
-        padding-bottom: 2900px;
+        padding-top: 5750px;
+        padding-bottom: 5750px;
 
         justify-content: center;
         display: flex;
@@ -569,9 +585,9 @@ body {
 
     }
     
-    .navigation{
+    /* .navigation{
         display: none;
-    }
+    } */
 
     .mainContent{
         justify-content: center;
