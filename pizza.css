@@ -494,6 +494,10 @@ body {
     flex-wrap: wrap;
 }
 
+.hide{
+    display: none;
+}
+
 @media (max-width: 1481px){
 
     .mainContent{

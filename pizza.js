@@ -1,7 +1,7 @@
 var pizza_info = [
     {
-        id:1,
-        icon:'assets/images/pizza_7.jpg',
+        id: 1,
+        icon: 'assets/images/pizza_7.jpg',
         title: "Імпреза",
         type: 'М’ясна піца',
         content: {
@@ -11,23 +11,23 @@ var pizza_info = [
             pineapple: ['ананаси'],
             additional: ['томатна паста', 'петрушка']
         },
-        small_size:{
+        small_size: {
             weight: 370,
             size: 30,
             price: 99
         },
-        big_size:{
+        big_size: {
             weight: 660,
             size: 40,
             price: 169
         },
-        is_new:true,
-        is_popular:true
+        is_new: true,
+        is_popular: true
 
     },
     {
-        id:2,
-        icon:'assets/images/pizza_2.jpg',
+        id: 2,
+        icon: 'assets/images/pizza_2.jpg',
         title: "BBQ",
         type: 'М’ясна піца',
         content: {
@@ -36,21 +36,21 @@ var pizza_info = [
             mushroom: ['шампінйони'],
             additional: ['петрушка', 'оливки']
         },
-        small_size:{
+        small_size: {
             weight: 460,
             size: 30,
             price: 139
         },
-        big_size:{
+        big_size: {
             weight: 840,
             size: 40,
             price: 199
         },
-        is_popular:true
+        is_popular: true
     },
     {
-        id:3,
-        icon:'assets/images/pizza_1.jpg',
+        id: 3,
+        icon: 'assets/images/pizza_1.jpg',
         title: "Міксовий поло",
         type: 'М’ясна піца',
         content: {
@@ -59,42 +59,42 @@ var pizza_info = [
             pineapple: ['ананаси'],
             additional: ['кукурудза', 'петрушка', 'соус томатний']
         },
-        small_size:{
+        small_size: {
             weight: 430,
             size: 30,
             price: 115
         },
-        big_size:{
+        big_size: {
             weight: 780,
             size: 40,
             price: 179
         }
     },
     {
-        id:4,
-        icon:'assets/images/pizza_5.jpg',
+        id: 4,
+        icon: 'assets/images/pizza_5.jpg',
         title: "Сициліано",
         type: 'М’ясна піца',
         content: {
             meat: ['вітчина', 'салямі'],
             cheese: ['сир моцарелла'],
             mushroom: ['шампінйони'],
-            additional: ['перець болгарський',  'соус томатний']
+            additional: ['перець болгарський', 'соус томатний']
         },
-        small_size:{
+        small_size: {
             weight: 450,
             size: 30,
             price: 111
         },
-        big_size:{
+        big_size: {
             weight: 790,
             size: 40,
             price: 169
         }
     },
     {
-        id:17,
-        icon:'assets/images/pizza_3.jpg',
+        id: 17,
+        icon: 'assets/images/pizza_3.jpg',
         title: "Маргарита",
         type: 'Вега піца',
         content: {
@@ -102,15 +102,15 @@ var pizza_info = [
             tomato: ['помідори'],
             additional: ['базилік', 'оливкова олія', 'соус томатний']
         },
-        small_size:{
+        small_size: {
             weight: 370,
             size: 30,
             price: 89
         }
     },
     {
-        id:43,
-        icon:'assets/images/pizza_6.jpg',
+        id: 43,
+        icon: 'assets/images/pizza_6.jpg',
         title: "Мікс смаків",
         type: 'М’ясна піца',
         content: {
@@ -120,20 +120,20 @@ var pizza_info = [
             pineapple: ['ананаси'],
             additional: ['цибуля кримська', 'огірки квашені', 'соус гірчичний']
         },
-        small_size:{
+        small_size: {
             weight: 470,
             size: 30,
             price: 115
         },
-        big_size:{
+        big_size: {
             weight: 780,
             size: 40,
             price: 180
         }
     },
     {
-        id:90,
-        icon:'assets/images/pizza_8.jpg',
+        id: 90,
+        icon: 'assets/images/pizza_8.jpg',
         title: "Дольче Маре",
         type: 'Морська піца',
         content: {
@@ -141,15 +141,15 @@ var pizza_info = [
             cheese: ['сир моцарелла'],
             additional: ['оливкова олія', 'вершки']
         },
-        big_size:{
+        big_size: {
             weight: 845,
             size: 40,
             price: 399
         }
     },
     {
-        id:6,
-        icon:'assets/images/pizza_4.jpg',
+        id: 6,
+        icon: 'assets/images/pizza_4.jpg',
         title: "Россо Густо",
         type: 'Морська піца',
         content: {
@@ -157,12 +157,12 @@ var pizza_info = [
             cheese: ['сир моцарелла'],
             additional: ['оливкова олія', 'вершки']
         },
-        small_size:{
+        small_size: {
             weight: 400,
             size: 30,
             price: 189
         },
-        big_size:{
+        big_size: {
             weight: 700,
             size: 40,
             price: 299
@@ -275,25 +275,92 @@ pizza_info.forEach(pizza => {
     pizzaContainer.appendChild(createPizzaHTML(pizza));
 });
 
-pizza_info.forEach(function(pizza) {
+pizza_info.forEach(function (pizza) {
     var pizzaHTML = createPizzaHTML(pizza);
     pizzaContainer.appendChild(pizzaHTML);
 });
 
-//функціонал кнопок покупки малих піц
+var money = document.querySelector('.money');
+
 const buySmallPizzaButtons = document.querySelectorAll('.buySmallPizza');
+
+//функціонал кнопок покупки малих піц
 buySmallPizzaButtons.forEach(button => {
-    button.addEventListener('click', function (){
-        addPizzaToOrders(this, 'мала');
+    button.addEventListener('click', function () {
+
+        const allOrders = document.querySelectorAll('.order');
+
+        const p = button.closest('.pizza');
+        const pizzaN = p.querySelector('h1').textContent;
+
+        let canAdd = true;
+
+        for (let i = 0; i < allOrders.length; i++) {
+            // alert(allOrders[i].querySelector('.pizzaNameOrder').textContent);
+            if (allOrders[i].querySelector('.pizzaNameOrder').textContent === pizzaN + ' (мала)'){
+                //alert('not again')
+                changeQuantityPlus(allOrders[i]);
+                canAdd=false;
+                break;
+            }
+        }
+        if(canAdd){
+            addPizzaToOrders(this, 'мала');
+
+        }
+        
     });
 });
 
 const buyBigPizzaButtons = document.querySelectorAll('.buyBigPizza');
-buyBigPizzaButtons.forEach(button=> {
-    button.addEventListener('click', function(){
-        addPizzaToOrders(this, 'велика');
+buyBigPizzaButtons.forEach(button => {
+    button.addEventListener('click', function () {
+        const allOrders = document.querySelectorAll('.order');
+
+        const p = button.closest('.pizza');
+        const pizzaN = p.querySelector('h1').textContent;
+
+        let canAdd = true;
+
+        for (let i = 0; i < allOrders.length; i++) {
+            // alert(allOrders[i].querySelector('.pizzaNameOrder').textContent);
+            if (allOrders[i].querySelector('.pizzaNameOrder').textContent === pizzaN + ' (велика)'){
+                //alert('not again')
+                changeQuantityPlus(allOrders[i]);
+                canAdd=false;
+                break;
+            }
+        }
+        if(canAdd){
+            addPizzaToOrders(this, 'велика');
+        }
+        
     });
 });
+
+// const plusButtons = document.querySelectorAll('.buttonPlus');
+// plusButtons.forEach(button => {
+//     button.addEventListener('click', function (){
+//         alert('plus')
+//         const myOrder = button.closest('.order');
+//         changeQuantityPlus(myOrder);
+//     });
+// });
+
+
+function changeQuantityPlus(ordr){
+    let spanToIncrease = parseInt(ordr.querySelector('.orderTextSpan:nth-of-type(2)').textContent);
+    spanToIncrease++;
+    ordr.querySelector('.orderTextSpan:nth-of-type(2)').textContent = spanToIncrease;
+}
+function changeQuantityMinus(ordr){
+   let spanToIncrease = parseInt(ordr.querySelector('.orderTextSpan:nth-of-type(2)').textContent);
+    //if(spanToIncrease>1){
+        spanToIncrease--;
+    //}
+    ordr.querySelector('.orderTextSpan:nth-of-type(2)').textContent = spanToIncrease;
+}
+
 
 function createElementWithClassAndText(tag, classNames, textContent) {
     const element = document.createElement(tag);
@@ -331,9 +398,42 @@ function createPriceAndButtonsBlock(priceText) {
     const buttonPlus = createElementWithClassAndText('button', 'roundB buttonPlus', '+');
     const buttonX = createElementWithClassAndText('button', 'roundB buttonX', 'x');
 
+    
+
+    buttonMinus.addEventListener('click', function() {
+        const myOrder = divPriceAndButtons.closest('.order');
+        const num = parseInt(myOrder.querySelector('.orderTextSpan:nth-of-type(2)').textContent);
+        //alert(num);
+        if(num>1){
+            //const myOrder = divPriceAndButtons.closest('.order');
+            changeQuantityMinus(myOrder);
+            money.textContent = parseInt(money.textContent) - parseInt(myOrder.querySelector('.orderTextSpan').textContent);
+
+        } 
+    });
+
+   
+    buttonPlus.addEventListener('click', function() {
+        const myOrder = divPriceAndButtons.closest('.order');
+        changeQuantityPlus(myOrder);
+
+        money.textContent = parseInt(money.textContent) + parseInt(myOrder.querySelector('.orderTextSpan').textContent);
+        
+    });
+
+    
+    buttonX.addEventListener('click', function() {
+        const myOrder = divPriceAndButtons.closest('.order');
+        
+        money.textContent = parseInt(money.textContent)-parseInt(myOrder.querySelector('.orderTextSpan').textContent)*parseInt(myOrder.querySelector('.orderTextSpan:nth-of-type(2)').textContent);
+        myOrder.remove();
+    });
+
     divPriceAndButtons.append(orderTextSpan, buttonMinus, numberOfBoughtPizzas, buttonPlus, buttonX);
+    
     return divPriceAndButtons;
 }
+
 
 // додавання нової піци до ордерс
 const addPizzaToOrders = function (button, string) {
@@ -352,6 +452,12 @@ const addPizzaToOrders = function (button, string) {
     const divForSpansOrder = createSpanBlock(firstSpan, secondSpan);
     const divPriceAndButtons = createPriceAndButtonsBlock(pizzaPrice);
 
+    
+    // alert(parseInt(money.textContent))
+    // alert(parseInt(pizzaPrice))
+    money.textContent = parseInt(money.textContent)+parseInt(pizzaPrice);
+    
+    
     orderDiv.append(pizzaNameOrder, divForSpansOrder, divPriceAndButtons, pizzaImgOrder);
     orders.appendChild(orderDiv);
 }
