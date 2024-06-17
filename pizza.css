@@ -14,9 +14,13 @@ body {
     /* position: relative;  */
     height: 100vh;
     background-color: rgb(255, 241, 222);
-    padding-top:1450px;
-    padding-bottom: 1450px;
+    padding-top:750px;
+    padding-bottom: 750px;
     min-width: 300px; 
+}
+
+.forPaddingP{
+    
 }
 
 .notOrder {
@@ -505,13 +509,17 @@ color: rgb(80, 79, 79);
 @media (max-width: 1481px){
 
     .mainContent{
-        padding-top: 2200px;
-        padding-bottom: 2200px;
-
         justify-content: center;
         display: flex;
         flex-direction: column;
+
+        padding-top: 2200px;
+        padding-bottom: 2200px;
     } 
+
+    .forPaddingP{
+        
+    }
 }
 
 @media (max-width: 1172px){

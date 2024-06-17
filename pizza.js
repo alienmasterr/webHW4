@@ -74,7 +74,7 @@ var pizza_info = [
         id: 4,
         icon: 'assets/images/pizza_5.jpg',
         title: "Сициліано",
-        type: 'М’ясна піца',
+        type: 'З грибами',
         content: {
             meat: ['вітчина', 'салямі'],
             cheese: ['сир моцарелла'],
@@ -112,7 +112,7 @@ var pizza_info = [
         id: 43,
         icon: 'assets/images/pizza_6.jpg',
         title: "Мікс смаків",
-        type: 'М’ясна піца',
+        type: 'З грибами',
         content: {
             meat: ['ковбаски'],
             cheese: ['сир моцарелла'],
@@ -271,13 +271,56 @@ function createPizzaHTML(pizza) {
 }
 
 const pizzaContainer = document.getElementById('pizzaContainer');
-pizza_info.forEach(pizza => {
-    pizzaContainer.appendChild(createPizzaHTML(pizza));
-});
+const fishPizzaContainer = document.getElementById('fishPizzaContainer');
+const meatPizzaContainer = document.getElementById('meatPizzaContainer');
+const mushroomPizzaContainer = document.getElementById('mushroomPizzaContainer');
+const vegaPizzaContainer = document.getElementById('vegaPizzaContainer');
+// pizza_info.forEach(pizza => {
+//     //alert(pizza.type);
+//     if(pizza.type==='Морська піца'){
+//         fishPizzaContainer.appendChild(createPizzaHTML(pizza));
+//     }else if(pizza.type ==='М’ясна піца'){
+//         meatPizzaContainer.appendChild(createPizzaHTML(pizza));
+//     }else if(pizza.type ==='Вега піца'){
+//         vegaPizzaContainer.appendChild(createPizzaHTML(pizza));
+//     }else if(pizza.type ==='З грибами'){
+//         mushroomPizzaContainer.appendChild(createPizzaHTML(pizza));
+//     }
+//     pizzaContainer.appendChild(createPizzaHTML(pizza));
+// });
 
-pizza_info.forEach(function (pizza) {
-    var pizzaHTML = createPizzaHTML(pizza);
-    pizzaContainer.appendChild(pizzaHTML);
+// pizza_info.forEach(function (pizza) {
+//     var pizzaHTML = createPizzaHTML(pizza);
+//     pizzaContainer.appendChild(pizzaHTML);
+// });
+
+const uniquePizzas = new Set(); // To store unique pizzas already added
+
+pizza_info.forEach(pizza => {
+  // Add to pizzaContainer
+  pizzaContainer.appendChild(createPizzaHTML(pizza));
+
+  // Check if pizza type is unique and add to respective container
+  if (!uniquePizzas.has(pizza.id)) {
+    switch (pizza.type) {
+      case 'Морська піца':
+        fishPizzaContainer.appendChild(createPizzaHTML(pizza));
+        break;
+      case 'М’ясна піца':
+        meatPizzaContainer.appendChild(createPizzaHTML(pizza));
+        break;
+      case 'Вега піца':
+        vegaPizzaContainer.appendChild(createPizzaHTML(pizza));
+        break;
+      case 'З грибами': // assuming this type doesn't exist, handle it or remove the line
+        mushroomPizzaContainer.appendChild(createPizzaHTML(pizza));
+        break;
+      default:
+        console.warn(`Unknown pizza type: ${pizza.type}`); // handle unknown types (optional)
+    }
+
+    uniquePizzas.add(pizza.id); // Mark pizza as added
+  }
 });
 
 
@@ -494,6 +537,100 @@ const clearOrder = function(){
     money.textContent=0;
 
 }
+
+//воно не ховає піци
+const allButton = document.querySelector('.allPizzas');
+allButton.addEventListener('click', function(){
+    fishPizzaContainer.classList.add('hide');
+    fishPizzaContainer.classList.remove('productList');
+
+    meatPizzaContainer.classList.add('hide');
+    meatPizzaContainer.classList.remove('productList');
+
+    vegaPizzaContainer.classList.add('hide');
+    vegaPizzaContainer.classList.remove('productList');
+
+    mushroomPizzaContainer.classList.add('hide');
+    mushroomPizzaContainer.classList.remove('productList');
+
+
+    pizzaContainer.classList.remove('hide');
+    pizzaContainer.classList.add('productList');
+
+});
+const fishButton = document.querySelector('.fish');
+fishButton.addEventListener('click', function(){
+    fishPizzaContainer.classList.remove('hide');
+    fishPizzaContainer.classList.add('productList')
+
+    pizzaContainer.classList.add('hide');
+    pizzaContainer.classList.remove('productList');
+
+    meatPizzaContainer.classList.add('hide');
+    meatPizzaContainer.classList.remove('productList');
+
+    vegaPizzaContainer.classList.add('hide');
+    vegaPizzaContainer.classList.remove('productList');
+
+    mushroomPizzaContainer.classList.add('hide');
+    mushroomPizzaContainer.classList.remove('productList');
+});
+
+const meatButton = document.querySelector('.meat');
+meatButton.addEventListener('click', function(){
+    meatPizzaContainer.classList.remove('hide');
+    meatPizzaContainer.classList.add('productList');
+
+    pizzaContainer.classList.add('hide');
+    pizzaContainer.classList.remove('productList');
+
+    fishPizzaContainer.classList.add('hide');
+    fishPizzaContainer.classList.remove('productList');
+
+    vegaPizzaContainer.classList.add('hide');
+    vegaPizzaContainer.classList.remove('productList');
+
+    mushroomPizzaContainer.classList.add('hide');
+    mushroomPizzaContainer.classList.remove('productList');
+});
+
+const vegaButton = document.querySelector('.vega');
+vegaButton.addEventListener('click', function(){
+    vegaPizzaContainer.classList.remove('hide');
+    vegaPizzaContainer.classList.add('productList');
+
+    pizzaContainer.classList.add('hide');
+    pizzaContainer.classList.remove('productList');
+
+    fishPizzaContainer.classList.add('hide');
+    fishPizzaContainer.classList.remove('productList');
+
+    meatPizzaContainer.classList.add('hide');
+    meatPizzaContainer.classList.remove('productList');
+
+    mushroomPizzaContainer.classList.add('hide');
+    mushroomPizzaContainer.classList.remove('productList');
+});
+
+const mushroomButton = document.querySelector('.mushroom');
+mushroomButton.addEventListener('click', function(){
+    mushroomPizzaContainer.classList.remove('hide');
+    mushroomPizzaContainer.classList.add('productList');
+
+    pizzaContainer.classList.add('hide');
+    pizzaContainer.classList.remove('productList');
+
+    fishPizzaContainer.classList.add('hide');
+    fishPizzaContainer.classList.remove('productList');
+
+    meatPizzaContainer.classList.add('hide');
+    meatPizzaContainer.classList.remove('productList');
+
+    vegaPizzaContainer.classList.add('hide');
+    vegaPizzaContainer.classList.remove('productList');
+});
+
+
 
 // const closeScreamerButton = document.querySelector('.close-btn');
 // closeScreamerButton.addEventListener('click', function(){
