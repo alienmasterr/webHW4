@@ -280,6 +280,7 @@ pizza_info.forEach(function (pizza) {
     pizzaContainer.appendChild(pizzaHTML);
 });
 
+
 var money = document.querySelector('.money');
 
 const buySmallPizzaButtons = document.querySelectorAll('.buySmallPizza');
@@ -300,13 +301,14 @@ buySmallPizzaButtons.forEach(button => {
             if (allOrders[i].querySelector('.pizzaNameOrder').textContent === pizzaN + ' (мала)'){
                 //alert('not again')
                 changeQuantityPlus(allOrders[i]);
+                //отут треба ще збільшувати загальну суму
                 canAdd=false;
                 break;
             }
         }
         if(canAdd){
             addPizzaToOrders(this, 'мала');
-
+            increaseNumberOfOrders();
         }
         
     });
@@ -333,6 +335,7 @@ buyBigPizzaButtons.forEach(button => {
         }
         if(canAdd){
             addPizzaToOrders(this, 'велика');
+            increaseNumberOfOrders();
         }
         
     });
@@ -347,11 +350,22 @@ buyBigPizzaButtons.forEach(button => {
 //     });
 // });
 
+function increaseNumberOfOrders(){
+    const orderNumSpan = document.querySelector('.numberOfOrders');
+    orderNumSpan.textContent = parseInt(orderNumSpan.textContent)+1;
+}
+
+function decreaseNumberOfOrders(){
+    const orderNumSpan = document.querySelector('.numberOfOrders');
+    orderNumSpan.textContent = parseInt(orderNumSpan.textContent)-1;
+}
 
 function changeQuantityPlus(ordr){
     let spanToIncrease = parseInt(ordr.querySelector('.orderTextSpan:nth-of-type(2)').textContent);
     spanToIncrease++;
     ordr.querySelector('.orderTextSpan:nth-of-type(2)').textContent = spanToIncrease;
+    money.textContent = parseInt(money.textContent) + parseInt(ordr.querySelector('.orderTextSpan').textContent);
+
 }
 function changeQuantityMinus(ordr){
    let spanToIncrease = parseInt(ordr.querySelector('.orderTextSpan:nth-of-type(2)').textContent);
@@ -359,6 +373,7 @@ function changeQuantityMinus(ordr){
         spanToIncrease--;
     //}
     ordr.querySelector('.orderTextSpan:nth-of-type(2)').textContent = spanToIncrease;
+    money.textContent = parseInt(money.textContent) - parseInt(ordr.querySelector('.orderTextSpan').textContent);
 }
 
 
@@ -407,7 +422,7 @@ function createPriceAndButtonsBlock(priceText) {
         if(num>1){
             //const myOrder = divPriceAndButtons.closest('.order');
             changeQuantityMinus(myOrder);
-            money.textContent = parseInt(money.textContent) - parseInt(myOrder.querySelector('.orderTextSpan').textContent);
+            // money.textContent = parseInt(money.textContent) - parseInt(myOrder.querySelector('.orderTextSpan').textContent);
 
         } 
     });
@@ -417,7 +432,7 @@ function createPriceAndButtonsBlock(priceText) {
         const myOrder = divPriceAndButtons.closest('.order');
         changeQuantityPlus(myOrder);
 
-        money.textContent = parseInt(money.textContent) + parseInt(myOrder.querySelector('.orderTextSpan').textContent);
+        // money.textContent = parseInt(money.textContent) + parseInt(myOrder.querySelector('.orderTextSpan').textContent);
         
     });
 
@@ -427,6 +442,7 @@ function createPriceAndButtonsBlock(priceText) {
         
         money.textContent = parseInt(money.textContent)-parseInt(myOrder.querySelector('.orderTextSpan').textContent)*parseInt(myOrder.querySelector('.orderTextSpan:nth-of-type(2)').textContent);
         myOrder.remove();
+        decreaseNumberOfOrders();
     });
 
     divPriceAndButtons.append(orderTextSpan, buttonMinus, numberOfBoughtPizzas, buttonPlus, buttonX);
@@ -462,7 +478,22 @@ const addPizzaToOrders = function (button, string) {
     orders.appendChild(orderDiv);
 }
 
+const clearOrderButton = document.querySelector('.cleanOrderButton');
+clearOrderButton.addEventListener('click', function(){
+    clearOrder();
+    
+})
 
+const clearOrder = function(){
+    const allOrders = document.querySelectorAll('.order');
+    for(let i=0; i<allOrders.length; i++){
+        allOrders[i].remove();
+    }
+    const orderNumSpan = document.querySelector('.numberOfOrders');
+    orderNumSpan.textContent = 0;
+    money.textContent=0;
+
+}
 
 // const closeScreamerButton = document.querySelector('.close-btn');
 // closeScreamerButton.addEventListener('click', function(){

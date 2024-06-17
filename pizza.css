@@ -430,7 +430,9 @@ body {
     border-width: 0px;
     color: grey;
     padding: 0%;
-
+}
+.cleanOrderButton:hover{
+color: rgb(80, 79, 79);
 }
 
 .orderTextSpan {
@@ -497,6 +499,8 @@ body {
 .hide{
     display: none;
 }
+
+
 
 @media (max-width: 1481px){
 
