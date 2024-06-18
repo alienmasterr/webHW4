@@ -467,7 +467,9 @@ function createPriceAndButtonsBlock(priceText) {
             changeQuantityMinus(myOrder);
             // money.textContent = parseInt(money.textContent) - parseInt(myOrder.querySelector('.orderTextSpan').textContent);
 
-        } 
+        }else{
+            deleteOrder(myOrder);
+        }
     });
 
    
@@ -482,10 +484,8 @@ function createPriceAndButtonsBlock(priceText) {
     
     buttonX.addEventListener('click', function() {
         const myOrder = divPriceAndButtons.closest('.order');
+        deleteOrder(myOrder);
         
-        money.textContent = parseInt(money.textContent)-parseInt(myOrder.querySelector('.orderTextSpan').textContent)*parseInt(myOrder.querySelector('.orderTextSpan:nth-of-type(2)').textContent);
-        myOrder.remove();
-        decreaseNumberOfOrders();
     });
 
     divPriceAndButtons.append(orderTextSpan, buttonMinus, numberOfBoughtPizzas, buttonPlus, buttonX);
@@ -493,6 +493,11 @@ function createPriceAndButtonsBlock(priceText) {
     return divPriceAndButtons;
 }
 
+const deleteOrder = function(ord){
+    money.textContent = parseInt(money.textContent)-parseInt(ord.querySelector('.orderTextSpan').textContent)*parseInt(ord.querySelector('.orderTextSpan:nth-of-type(2)').textContent);
+    ord.remove();
+    decreaseNumberOfOrders();
+}
 
 // додавання нової піци до ордерс
 const addPizzaToOrders = function (button, string) {
@@ -538,8 +543,9 @@ const clearOrder = function(){
 
 }
 
-//воно не ховає піци
+
 const allButton = document.querySelector('.allPizzas');
+const generalNumberOfPizzas = document.querySelector('.generalNumberOfPizzas');
 allButton.addEventListener('click', function(){
     fishPizzaContainer.classList.add('hide');
     fishPizzaContainer.classList.remove('productList');
@@ -556,6 +562,11 @@ allButton.addEventListener('click', function(){
 
     pizzaContainer.classList.remove('hide');
     pizzaContainer.classList.add('productList');
+
+    generalNumberOfPizzas.textContent = 8;
+
+
+    
 
 });
 const fishButton = document.querySelector('.fish');
@@ -574,6 +585,8 @@ fishButton.addEventListener('click', function(){
 
     mushroomPizzaContainer.classList.add('hide');
     mushroomPizzaContainer.classList.remove('productList');
+
+    generalNumberOfPizzas.textContent = 2;
 });
 
 const meatButton = document.querySelector('.meat');
@@ -592,6 +605,9 @@ meatButton.addEventListener('click', function(){
 
     mushroomPizzaContainer.classList.add('hide');
     mushroomPizzaContainer.classList.remove('productList');
+
+    generalNumberOfPizzas.textContent = 3;
+
 });
 
 const vegaButton = document.querySelector('.vega');
@@ -610,6 +626,9 @@ vegaButton.addEventListener('click', function(){
 
     mushroomPizzaContainer.classList.add('hide');
     mushroomPizzaContainer.classList.remove('productList');
+
+    generalNumberOfPizzas.textContent = 1;
+
 });
 
 const mushroomButton = document.querySelector('.mushroom');
@@ -628,6 +647,9 @@ mushroomButton.addEventListener('click', function(){
 
     vegaPizzaContainer.classList.add('hide');
     vegaPizzaContainer.classList.remove('productList');
+
+    generalNumberOfPizzas.textContent = 2;
+
 });
 
 

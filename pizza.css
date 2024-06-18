@@ -1,6 +1,7 @@
 body {
     padding: 0%;
     margin: 0%;
+    height: 100vh;
 }
 
 .mainContent {
@@ -12,11 +13,12 @@ body {
     box-sizing: border-box;
     font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
     /* position: relative;  */
-    height: 100vh;
+    /* height: 100vh; */
     background-color: rgb(255, 241, 222);
-    padding-top:750px;
-    padding-bottom: 750px;
+    /* padding-top:750px;
+    padding-bottom: 750px; */
     min-width: 300px; 
+    margin-top: 2em;
 }
 
 .forPaddingP{
@@ -504,6 +506,14 @@ color: rgb(80, 79, 79);
     display: none;
 }
 
+.justTakeSpace{
+    background-color: aqua;
+    height: 100px;
+}
+
+.pizza p{
+    height: 100px;
+}
 
 
 @media (max-width: 1481px){
@@ -513,20 +523,17 @@ color: rgb(80, 79, 79);
         display: flex;
         flex-direction: column;
 
-        padding-top: 2200px;
-        padding-bottom: 2200px;
+        /* padding-top: 2200px;
+        padding-bottom: 2200px; */
     } 
 
-    .forPaddingP{
-        
-    }
 }
 
 @media (max-width: 1172px){
 
     .mainContent{
-        padding-top: 2900px;
-        padding-bottom: 2900px;
+        /* padding-top: 2900px;
+        padding-bottom: 2900px; */
 
         justify-content: center;
         display: flex;
@@ -537,11 +544,11 @@ color: rgb(80, 79, 79);
 
 }
 
-@media (max-width: 1048px){
+/* @media (max-width: 1048px){
 
     .mainContent{
-        padding-top: 5750px;
-        padding-bottom: 5750px;
+        /* padding-top: 5750px;
+        padding-bottom: 5750px; 
 
         justify-content: center;
         display: flex;
@@ -550,7 +557,7 @@ color: rgb(80, 79, 79);
 
    
 
-}
+} */
 
 /* to bigger 1000 1010 */
 @media (max-width: 1003px) {
@@ -638,9 +645,6 @@ color: rgb(80, 79, 79);
         padding: 0em 0.7em;
     } */
 
-    .buttonMinus{
-        /* background-color: aqua; */
-    }
     .headerPizza{
         display: none;
     }
