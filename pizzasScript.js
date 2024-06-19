@@ -654,3 +654,8 @@ const saveOrderToLocalStorage = (pizzaName, string, firstSpan, secondSpan, pizza
     orders.push(orderToAdd);
     localStorage.setItem('orders', JSON.stringify(orders));
 };
+
+const orderButton = document.querySelector('.orderButton');
+orderButton.addEventListener('click', function(){
+    window.open('index.html', '_blank');
+});

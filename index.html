@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebDataRocks Example</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.webdatarocks.com/latest/webdatarocks.min.css">
+    <script type="text/javascript" src="https://cdn.webdatarocks.com/latest/webdatarocks.toolbar.min.js"></script>
+    <script type="text/javascript" src="https://cdn.webdatarocks.com/latest/webdatarocks.js"></script>
+
+    <link rel="stylesheet" href="pizza.css">
+</head>
+<body>
+    <header class="header">
+
+		<div class="upperHeaderPart">
+
+			<div class="headerTextUpper">
+				<span class="phoneNumber">(044) 222 5 222</span>
+				<span class="headerInfo">24 години/7 днів на тиждень</span>
+				<span class="headerInfo">Безкоштовна доставка піци</span>
+			</div>
+
+
+			<button class="enterButton orangeButton">Увійти</button>
+		</div>
+
+		<hr>
+
+		<span class="headerPizza">Піца</span>
+
+	</header>
+
+    <div id="pivot-container"></div>
+
+    <div class="upperBage bage">
+		<span class="upperBageText">PIZZA</span>
+		<span class="upperBageText">KMA</span>
+		<div class="leftUpTrianleBage"></div>
+		<div class="rightUpTrianleBage"></div>
+	</div>
+
+	<footer class="footer">
+		<p>PIZZA22 - практичний проєкт в Києво-Могилянській Академії</p>
+		<p>Доставка не здійснюється</p>
+	</footer>
+
+	<div class="downBage bage">
+
+        <div class="leftDownTrianleBage"></div>
+        <div class="rightDownTrianleBage"></div>
+
+        <span>ЦЬОГО</span><span>ТИЖНЯ НА ВСЕ</span>
+        <span>-20%</span>
+
+    </div>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+
+            new WebDataRocks({
+                container: "#pivot-container",
+                toolbar: true,
+                report: {
+                    dataSource: {
+                        data: orders
+                    },
+                    slice: {
+                        rows: [{ uniqueName: "pizzaName" }],
+                        columns: [{ uniqueName: "string" }],
+                        measures: [
+                            { uniqueName: "pizzaPrice", aggregation: "sum", caption: "Total Price" },
+                            { uniqueName: "quantity", aggregation: "sum", caption: "Total Quantity" }
+                        ],
+                        expands: {
+                            expandAll: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

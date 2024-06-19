@@ -19,6 +19,8 @@ body {
     padding-bottom: 750px; */
     min-width: 300px; 
     margin-top: 2em;
+
+   
 }
 
 .forPaddingP{
@@ -266,8 +268,8 @@ body {
     border-top: 30px solid orange;
     /* Змінено з border-bottom на border-top */
     position: absolute;
-    top: 60%;
-    left: 37%;
+    top: 62%;
+    left: 40%;
     transform: translate(-26%, 88%);
 }
 
@@ -286,6 +288,8 @@ body {
 .orders {
     display: flex;
     flex-direction: column;
+
+    
     overflow-y: scroll;
 
     /* position: fixed; */
@@ -513,6 +517,44 @@ color: rgb(80, 79, 79);
 
 .pizza p{
     height: 100px;
+}
+
+.tableContainer{
+    height: 75%;
+    background-color: rgb(255, 241, 222);
+}
+
+#pivot-container {
+    padding: 20px;
+    background-color: rgb(255, 241, 222); /* Фоновий колір контейнера */
+}
+
+/* Стилі для заголовків таблиці */
+.wdr-toolbar {
+    background-color: rgb(255, 241, 222); /* Фоновий колір тулбару */
+    color: #333;
+}
+
+/* Стилі для заголовків рядків */
+.wdr-grid .wdr-header-cell {
+    background-color: rgb(255, 241, 222); /* Фоновий колір заголовків рядків */
+    color: #333;
+    font-weight: bold;
+}
+
+/* Стилі для комірок з даними */
+.wdr-grid .wdr-data-cell {
+    background-color: #fff; /* Фоновий колір комірок з даними */
+    color: #333;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+/* Стилі для підсумкових комірок */
+.wdr-grid .wdr-data-cell-total {
+    background-color: rgb(255, 241, 222); /* Фоновий колір підсумкових комірок */
+    color: #333;
+    font-weight: bold;
 }
 
 
