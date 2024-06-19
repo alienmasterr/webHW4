@@ -1,3 +1,24 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    orders.forEach(order => {
+        const orderDiv = createElementWithClassAndText('div', 'order', '');
+        const pizzaImgOrder = createImageElement(order.imgSrc, order.pizzaName);
+        const pizzaNameOrder = createElementWithClassAndText('h3', 'pizzaNameOrder', `${order.pizzaName} (${order.string})`);
+        const divForSpansOrder = createSpanBlock(order.firstSpan, order.secondSpan);
+        const divPriceAndButtons = createPriceAndButtonsBlock(order.pizzaPrice);
+
+
+        orderDiv.append(pizzaNameOrder, divForSpansOrder, divPriceAndButtons, pizzaImgOrder);
+
+        document.querySelector('.orders').appendChild(orderDiv);
+
+    });
+
+    // Відновлення загальної суми
+    const total = orders.reduce((acc, order) => acc + parseInt(order.pizzaPrice) * parseInt(order.secondSpan), 0);
+    document.querySelector('.money').textContent = total;
+});
+
 var pizza_info = [
     {
         id: 1,
@@ -297,31 +318,32 @@ const vegaPizzaContainer = document.getElementById('vegaPizzaContainer');
 const uniquePizzas = new Set(); // To store unique pizzas already added
 
 pizza_info.forEach(pizza => {
-  // Add to pizzaContainer
-  pizzaContainer.appendChild(createPizzaHTML(pizza));
+    // Add to pizzaContainer
+    pizzaContainer.appendChild(createPizzaHTML(pizza));
 
-  // Check if pizza type is unique and add to respective container
-  if (!uniquePizzas.has(pizza.id)) {
-    switch (pizza.type) {
-      case 'Морська піца':
-        fishPizzaContainer.appendChild(createPizzaHTML(pizza));
-        break;
-      case 'М’ясна піца':
-        meatPizzaContainer.appendChild(createPizzaHTML(pizza));
-        break;
-      case 'Вега піца':
-        vegaPizzaContainer.appendChild(createPizzaHTML(pizza));
-        break;
-      case 'З грибами': // assuming this type doesn't exist, handle it or remove the line
-        mushroomPizzaContainer.appendChild(createPizzaHTML(pizza));
-        break;
-      default:
-        console.warn(`Unknown pizza type: ${pizza.type}`); // handle unknown types (optional)
+    // Check if pizza type is unique and add to respective container
+    if (!uniquePizzas.has(pizza.id)) {
+        switch (pizza.type) {
+            case 'Морська піца':
+                fishPizzaContainer.appendChild(createPizzaHTML(pizza));
+                break;
+            case 'М’ясна піца':
+                meatPizzaContainer.appendChild(createPizzaHTML(pizza));
+                break;
+            case 'Вега піца':
+                vegaPizzaContainer.appendChild(createPizzaHTML(pizza));
+                break;
+            case 'З грибами': // assuming this type doesn't exist, handle it or remove the line
+                mushroomPizzaContainer.appendChild(createPizzaHTML(pizza));
+                break;
+            default:
+                console.warn(`Unknown pizza type: ${pizza.type}`); // handle unknown types (optional)
+        }
+
+        uniquePizzas.add(pizza.id); // Mark pizza as added
     }
-
-    uniquePizzas.add(pizza.id); // Mark pizza as added
-  }
 });
+
 
 
 var money = document.querySelector('.money');
@@ -341,19 +363,19 @@ buySmallPizzaButtons.forEach(button => {
 
         for (let i = 0; i < allOrders.length; i++) {
             // alert(allOrders[i].querySelector('.pizzaNameOrder').textContent);
-            if (allOrders[i].querySelector('.pizzaNameOrder').textContent === pizzaN + ' (мала)'){
+            if (allOrders[i].querySelector('.pizzaNameOrder').textContent === pizzaN + ' (мала)') {
                 //alert('not again')
                 changeQuantityPlus(allOrders[i]);
                 //отут треба ще збільшувати загальну суму
-                canAdd=false;
+                canAdd = false;
                 break;
             }
         }
-        if(canAdd){
+        if (canAdd) {
             addPizzaToOrders(this, 'мала');
             increaseNumberOfOrders();
         }
-        
+
     });
 });
 
@@ -369,18 +391,18 @@ buyBigPizzaButtons.forEach(button => {
 
         for (let i = 0; i < allOrders.length; i++) {
             // alert(allOrders[i].querySelector('.pizzaNameOrder').textContent);
-            if (allOrders[i].querySelector('.pizzaNameOrder').textContent === pizzaN + ' (велика)'){
+            if (allOrders[i].querySelector('.pizzaNameOrder').textContent === pizzaN + ' (велика)') {
                 //alert('not again')
                 changeQuantityPlus(allOrders[i]);
-                canAdd=false;
+                canAdd = false;
                 break;
             }
         }
-        if(canAdd){
+        if (canAdd) {
             addPizzaToOrders(this, 'велика');
             increaseNumberOfOrders();
         }
-        
+
     });
 });
 
@@ -393,30 +415,31 @@ buyBigPizzaButtons.forEach(button => {
 //     });
 // });
 
-function increaseNumberOfOrders(){
+function increaseNumberOfOrders() {
     const orderNumSpan = document.querySelector('.numberOfOrders');
-    orderNumSpan.textContent = parseInt(orderNumSpan.textContent)+1;
+    orderNumSpan.textContent = parseInt(orderNumSpan.textContent) + 1;
 }
 
-function decreaseNumberOfOrders(){
+function decreaseNumberOfOrders() {
     const orderNumSpan = document.querySelector('.numberOfOrders');
-    orderNumSpan.textContent = parseInt(orderNumSpan.textContent)-1;
+    orderNumSpan.textContent = parseInt(orderNumSpan.textContent) - 1;
 }
 
-function changeQuantityPlus(ordr){
+function changeQuantityPlus(ordr) {
     let spanToIncrease = parseInt(ordr.querySelector('.orderTextSpan:nth-of-type(2)').textContent);
     spanToIncrease++;
     ordr.querySelector('.orderTextSpan:nth-of-type(2)').textContent = spanToIncrease;
     money.textContent = parseInt(money.textContent) + parseInt(ordr.querySelector('.orderTextSpan').textContent);
 
 }
-function changeQuantityMinus(ordr){
-   let spanToIncrease = parseInt(ordr.querySelector('.orderTextSpan:nth-of-type(2)').textContent);
+function changeQuantityMinus(ordr) {
+    let spanToIncrease = parseInt(ordr.querySelector('.orderTextSpan:nth-of-type(2)').textContent);
     //if(spanToIncrease>1){
-        spanToIncrease--;
+    spanToIncrease--;
     //}
     ordr.querySelector('.orderTextSpan:nth-of-type(2)').textContent = spanToIncrease;
     money.textContent = parseInt(money.textContent) - parseInt(ordr.querySelector('.orderTextSpan').textContent);
+
 }
 
 
@@ -456,47 +479,49 @@ function createPriceAndButtonsBlock(priceText) {
     const buttonPlus = createElementWithClassAndText('button', 'roundB buttonPlus', '+');
     const buttonX = createElementWithClassAndText('button', 'roundB buttonX', 'x');
 
-    
 
-    buttonMinus.addEventListener('click', function() {
+
+    buttonMinus.addEventListener('click', function () {
         const myOrder = divPriceAndButtons.closest('.order');
         const num = parseInt(myOrder.querySelector('.orderTextSpan:nth-of-type(2)').textContent);
         //alert(num);
-        if(num>1){
+        if (num > 1) {
             //const myOrder = divPriceAndButtons.closest('.order');
             changeQuantityMinus(myOrder);
             // money.textContent = parseInt(money.textContent) - parseInt(myOrder.querySelector('.orderTextSpan').textContent);
 
-        }else{
+        } else {
             deleteOrder(myOrder);
         }
     });
 
-   
-    buttonPlus.addEventListener('click', function() {
+
+    buttonPlus.addEventListener('click', function () {
         const myOrder = divPriceAndButtons.closest('.order');
         changeQuantityPlus(myOrder);
 
         // money.textContent = parseInt(money.textContent) + parseInt(myOrder.querySelector('.orderTextSpan').textContent);
-        
+
     });
 
-    
-    buttonX.addEventListener('click', function() {
+
+    buttonX.addEventListener('click', function () {
         const myOrder = divPriceAndButtons.closest('.order');
         deleteOrder(myOrder);
-        
+
     });
 
     divPriceAndButtons.append(orderTextSpan, buttonMinus, numberOfBoughtPizzas, buttonPlus, buttonX);
-    
+
     return divPriceAndButtons;
 }
 
-const deleteOrder = function(ord){
-    money.textContent = parseInt(money.textContent)-parseInt(ord.querySelector('.orderTextSpan').textContent)*parseInt(ord.querySelector('.orderTextSpan:nth-of-type(2)').textContent);
+const deleteOrder = function (ord) {
+    money.textContent = parseInt(money.textContent) - parseInt(ord.querySelector('.orderTextSpan').textContent) * parseInt(ord.querySelector('.orderTextSpan:nth-of-type(2)').textContent);
     ord.remove();
     decreaseNumberOfOrders();
+
+
 }
 
 // додавання нової піци до ордерс
@@ -516,151 +541,194 @@ const addPizzaToOrders = function (button, string) {
     const divForSpansOrder = createSpanBlock(firstSpan, secondSpan);
     const divPriceAndButtons = createPriceAndButtonsBlock(pizzaPrice);
 
-    
+
     // alert(parseInt(money.textContent))
     // alert(parseInt(pizzaPrice))
-    money.textContent = parseInt(money.textContent)+parseInt(pizzaPrice);
-    
-    
+    money.textContent = parseInt(money.textContent) + parseInt(pizzaPrice);
+
+
     orderDiv.append(pizzaNameOrder, divForSpansOrder, divPriceAndButtons, pizzaImgOrder);
     orders.appendChild(orderDiv);
+
+    //зберігаємо в локал сторедж
+    saveOrderToLocalStorage(pizzaName, string, firstSpan, secondSpan, pizzaPrice, pizzaImg.src);
+
+
 }
 
 const clearOrderButton = document.querySelector('.cleanOrderButton');
-clearOrderButton.addEventListener('click', function(){
+clearOrderButton.addEventListener('click', function () {
     clearOrder();
-    
+
 })
 
-const clearOrder = function(){
+const clearOrder = function () {
     const allOrders = document.querySelectorAll('.order');
-    for(let i=0; i<allOrders.length; i++){
+    for (let i = 0; i < allOrders.length; i++) {
         allOrders[i].remove();
     }
     const orderNumSpan = document.querySelector('.numberOfOrders');
     orderNumSpan.textContent = 0;
-    money.textContent=0;
+    money.textContent = 0;
 
 }
 
 
-const allButton = document.querySelector('.allPizzas');
-const generalNumberOfPizzas = document.querySelector('.generalNumberOfPizzas');
-allButton.addEventListener('click', function(){
-    fishPizzaContainer.classList.add('hide');
-    fishPizzaContainer.classList.remove('productList');
 
-    meatPizzaContainer.classList.add('hide');
-    meatPizzaContainer.classList.remove('productList');
+// const allButton = document.querySelector('.allPizzas');
+// const generalNumberOfPizzas = document.querySelector('.generalNumberOfPizzas');
+// allButton.addEventListener('click', function () {
+//     fishPizzaContainer.classList.add('hide');
+//     fishPizzaContainer.classList.remove('productList');
 
-    vegaPizzaContainer.classList.add('hide');
-    vegaPizzaContainer.classList.remove('productList');
+//     meatPizzaContainer.classList.add('hide');
+//     meatPizzaContainer.classList.remove('productList');
 
-    mushroomPizzaContainer.classList.add('hide');
-    mushroomPizzaContainer.classList.remove('productList');
+//     vegaPizzaContainer.classList.add('hide');
+//     vegaPizzaContainer.classList.remove('productList');
 
-
-    pizzaContainer.classList.remove('hide');
-    pizzaContainer.classList.add('productList');
-
-    generalNumberOfPizzas.textContent = 8;
+//     mushroomPizzaContainer.classList.add('hide');
+//     mushroomPizzaContainer.classList.remove('productList');
 
 
-    
+//     pizzaContainer.classList.remove('hide');
+//     pizzaContainer.classList.add('productList');
 
-});
-const fishButton = document.querySelector('.fish');
-fishButton.addEventListener('click', function(){
-    fishPizzaContainer.classList.remove('hide');
-    fishPizzaContainer.classList.add('productList')
-
-    pizzaContainer.classList.add('hide');
-    pizzaContainer.classList.remove('productList');
-
-    meatPizzaContainer.classList.add('hide');
-    meatPizzaContainer.classList.remove('productList');
-
-    vegaPizzaContainer.classList.add('hide');
-    vegaPizzaContainer.classList.remove('productList');
-
-    mushroomPizzaContainer.classList.add('hide');
-    mushroomPizzaContainer.classList.remove('productList');
-
-    generalNumberOfPizzas.textContent = 2;
-});
-
-const meatButton = document.querySelector('.meat');
-meatButton.addEventListener('click', function(){
-    meatPizzaContainer.classList.remove('hide');
-    meatPizzaContainer.classList.add('productList');
-
-    pizzaContainer.classList.add('hide');
-    pizzaContainer.classList.remove('productList');
-
-    fishPizzaContainer.classList.add('hide');
-    fishPizzaContainer.classList.remove('productList');
-
-    vegaPizzaContainer.classList.add('hide');
-    vegaPizzaContainer.classList.remove('productList');
-
-    mushroomPizzaContainer.classList.add('hide');
-    mushroomPizzaContainer.classList.remove('productList');
-
-    generalNumberOfPizzas.textContent = 3;
-
-});
-
-const vegaButton = document.querySelector('.vega');
-vegaButton.addEventListener('click', function(){
-    vegaPizzaContainer.classList.remove('hide');
-    vegaPizzaContainer.classList.add('productList');
-
-    pizzaContainer.classList.add('hide');
-    pizzaContainer.classList.remove('productList');
-
-    fishPizzaContainer.classList.add('hide');
-    fishPizzaContainer.classList.remove('productList');
-
-    meatPizzaContainer.classList.add('hide');
-    meatPizzaContainer.classList.remove('productList');
-
-    mushroomPizzaContainer.classList.add('hide');
-    mushroomPizzaContainer.classList.remove('productList');
-
-    generalNumberOfPizzas.textContent = 1;
-
-});
-
-const mushroomButton = document.querySelector('.mushroom');
-mushroomButton.addEventListener('click', function(){
-    mushroomPizzaContainer.classList.remove('hide');
-    mushroomPizzaContainer.classList.add('productList');
-
-    pizzaContainer.classList.add('hide');
-    pizzaContainer.classList.remove('productList');
-
-    fishPizzaContainer.classList.add('hide');
-    fishPizzaContainer.classList.remove('productList');
-
-    meatPizzaContainer.classList.add('hide');
-    meatPizzaContainer.classList.remove('productList');
-
-    vegaPizzaContainer.classList.add('hide');
-    vegaPizzaContainer.classList.remove('productList');
-
-    generalNumberOfPizzas.textContent = 2;
-
-});
+//     generalNumberOfPizzas.textContent = 8;
 
 
 
-// const closeScreamerButton = document.querySelector('.close-btn');
-// closeScreamerButton.addEventListener('click', function(){
-//     closeScreamer();
+
 // });
-// function closeScreamer() {
-//     document.getElementById('screamer').style.display = 'none';
-// }
+// const fishButton = document.querySelector('.fish');
+// fishButton.addEventListener('click', function () {
+//     fishPizzaContainer.classList.remove('hide');
+//     fishPizzaContainer.classList.add('productList')
+
+//     pizzaContainer.classList.add('hide');
+//     pizzaContainer.classList.remove('productList');
+
+//     meatPizzaContainer.classList.add('hide');
+//     meatPizzaContainer.classList.remove('productList');
+
+//     vegaPizzaContainer.classList.add('hide');
+//     vegaPizzaContainer.classList.remove('productList');
+
+//     mushroomPizzaContainer.classList.add('hide');
+//     mushroomPizzaContainer.classList.remove('productList');
+
+//     generalNumberOfPizzas.textContent = 2;
+// });
+
+// const meatButton = document.querySelector('.meat');
+// meatButton.addEventListener('click', function () {
+//     meatPizzaContainer.classList.remove('hide');
+//     meatPizzaContainer.classList.add('productList');
+
+//     pizzaContainer.classList.add('hide');
+//     pizzaContainer.classList.remove('productList');
+
+//     fishPizzaContainer.classList.add('hide');
+//     fishPizzaContainer.classList.remove('productList');
+
+//     vegaPizzaContainer.classList.add('hide');
+//     vegaPizzaContainer.classList.remove('productList');
+
+//     mushroomPizzaContainer.classList.add('hide');
+//     mushroomPizzaContainer.classList.remove('productList');
+
+//     generalNumberOfPizzas.textContent = 3;
+
+// });
+
+// const vegaButton = document.querySelector('.vega');
+// vegaButton.addEventListener('click', function () {
+//     vegaPizzaContainer.classList.remove('hide');
+//     vegaPizzaContainer.classList.add('productList');
+
+//     pizzaContainer.classList.add('hide');
+//     pizzaContainer.classList.remove('productList');
+
+//     fishPizzaContainer.classList.add('hide');
+//     fishPizzaContainer.classList.remove('productList');
+
+//     meatPizzaContainer.classList.add('hide');
+//     meatPizzaContainer.classList.remove('productList');
+
+//     mushroomPizzaContainer.classList.add('hide');
+//     mushroomPizzaContainer.classList.remove('productList');
+
+//     generalNumberOfPizzas.textContent = 1;
+
+// });
+
+// const mushroomButton = document.querySelector('.mushroom');
+// mushroomButton.addEventListener('click', function () {
+//     mushroomPizzaContainer.classList.remove('hide');
+//     mushroomPizzaContainer.classList.add('productList');
+
+//     pizzaContainer.classList.add('hide');
+//     pizzaContainer.classList.remove('productList');
+
+//     fishPizzaContainer.classList.add('hide');
+//     fishPizzaContainer.classList.remove('productList');
+
+//     meatPizzaContainer.classList.add('hide');
+//     meatPizzaContainer.classList.remove('productList');
+
+//     vegaPizzaContainer.classList.add('hide');
+//     vegaPizzaContainer.classList.remove('productList');
+
+//     generalNumberOfPizzas.textContent = 2;
+
+// });
+
+const generalNumberOfPizzas = document.querySelector('.generalNumberOfPizzas');
+
+function switchPizzaContainer(showContainer, numberOfPizzas) {
+    const containers = [pizzaContainer, fishPizzaContainer, meatPizzaContainer, vegaPizzaContainer, mushroomPizzaContainer];
+
+    containers.forEach(container => {
+        if (container === showContainer) {
+            container.classList.remove('hide');
+            container.classList.add('productList');
+        } else {
+            container.classList.add('hide');
+            container.classList.remove('productList');
+        }
+    });
+
+    generalNumberOfPizzas.textContent = numberOfPizzas;
+}
+
+document.querySelector('.allPizzas').addEventListener('click', function () {
+    switchPizzaContainer(pizzaContainer, 8);
+});
+
+document.querySelector('.fish').addEventListener('click', function () {
+    switchPizzaContainer(fishPizzaContainer, 2);
+});
+
+document.querySelector('.meat').addEventListener('click', function () {
+    switchPizzaContainer(meatPizzaContainer, 3);
+});
+
+document.querySelector('.vega').addEventListener('click', function () {
+    switchPizzaContainer(vegaPizzaContainer, 1);
+});
+
+document.querySelector('.mushroom').addEventListener('click', function () {
+    switchPizzaContainer(mushroomPizzaContainer, 2);
+});
+
+//функція зберігання в локал сторедж
+const saveOrderToLocalStorage = (pizzaName, string, firstSpan, secondSpan, pizzaPrice, imgSrc) => {
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+    orders.push({ pizzaName, string, firstSpan, secondSpan, pizzaPrice, imgSrc });
+    localStorage.setItem('orders', JSON.stringify(orders));
+};
+
+
 
 
 
