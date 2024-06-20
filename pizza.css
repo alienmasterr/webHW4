@@ -17,14 +17,10 @@ body {
     background-color: rgb(255, 241, 222);
     /* padding-top:750px;
     padding-bottom: 750px; */
-    min-width: 300px; 
+    min-width: 300px;
     margin-top: 2em;
 
-   
-}
 
-.forPaddingP{
-    
 }
 
 .notOrder {
@@ -88,7 +84,8 @@ body {
 }
 
 .header {
-    position: sticky;/* ось */
+    position: sticky;
+    /* ось */
     top: 0;
     left: 0;
     right: 0;
@@ -137,7 +134,7 @@ body {
 .pizzaInfo {
     display: flex;
     flex-direction: row;
-    
+
 }
 
 .downPizzaInfo,
@@ -178,7 +175,7 @@ body {
     width: 300px;
     background-color: white;
     border: 1px solid #ccc;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     padding: 10px;
     box-sizing: border-box;
@@ -244,8 +241,9 @@ body {
     transform: translate(-26%, 88%);
 }
 
-.pizza{
+.pizza {
     margin-bottom: 20px;
+    position: relative;
 }
 
 .rightDownTrianleBage {
@@ -289,7 +287,7 @@ body {
     display: flex;
     flex-direction: column;
 
-    
+
     overflow-y: scroll;
 
     /* position: fixed; */
@@ -359,7 +357,7 @@ body {
     border-radius: 0.5em;
 }
 
-.productList{
+.productList {
 
     display: block;
 
@@ -417,7 +415,8 @@ body {
 .pizzaInfo {
     display: flex;
     flex-direction: row;
-    justify-content: center; /*було спейс бітвін тут*/
+    justify-content: center;
+    /*було спейс бітвін тут*/
     /* padding-right: 3em; */
 }
 
@@ -441,8 +440,9 @@ body {
     color: grey;
     padding: 0%;
 }
-.cleanOrderButton:hover{
-color: rgb(80, 79, 79);
+
+.cleanOrderButton:hover {
+    color: rgb(80, 79, 79);
 }
 
 .orderTextSpan {
@@ -494,11 +494,11 @@ color: rgb(80, 79, 79);
 
 }
 
-.pizzaIngredients{
+.pizzaIngredients {
     height: 100px;
 }
 
-.productList{
+.productList {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -506,45 +506,49 @@ color: rgb(80, 79, 79);
     flex-wrap: wrap;
 }
 
-.hide{
+.hide {
     display: none;
 }
 
-.justTakeSpace{
+.justTakeSpace {
     background-color: aqua;
     height: 100px;
 }
 
-.pizza p{
+.pizza p {
     height: 100px;
 }
 
-.tableContainer{
+.tableContainer {
     height: 75%;
     background-color: rgb(255, 241, 222);
 }
 
 #pivot-container {
     padding: 20px;
-    background-color: rgb(255, 241, 222); /* Фоновий колір контейнера */
+    background-color: rgb(255, 241, 222);
+    /* Фоновий колір контейнера */
 }
 
 /* Стилі для заголовків таблиці */
 .wdr-toolbar {
-    background-color: rgb(255, 241, 222); /* Фоновий колір тулбару */
+    background-color: rgb(255, 241, 222);
+    /* Фоновий колір тулбару */
     color: #333;
 }
 
 /* Стилі для заголовків рядків */
 .wdr-grid .wdr-header-cell {
-    background-color: rgb(255, 241, 222); /* Фоновий колір заголовків рядків */
+    background-color: rgb(255, 241, 222);
+    /* Фоновий колір заголовків рядків */
     color: #333;
     font-weight: bold;
 }
 
 /* Стилі для комірок з даними */
 .wdr-grid .wdr-data-cell {
-    background-color: #fff; /* Фоновий колір комірок з даними */
+    background-color: #fff;
+    /* Фоновий колір комірок з даними */
     color: #333;
     text-align: center;
     border: 1px solid #ccc;
@@ -552,28 +556,65 @@ color: rgb(80, 79, 79);
 
 /* Стилі для підсумкових комірок */
 .wdr-grid .wdr-data-cell-total {
-    background-color: rgb(255, 241, 222); /* Фоновий колір підсумкових комірок */
+    background-color: rgb(255, 241, 222);
+    /* Фоновий колір підсумкових комірок */
     color: #333;
     font-weight: bold;
 }
 
 
-@media (max-width: 1481px){
+.popularBage{
+    font-size: 18px;
+    color: white;
+    background-color: rgb(245, 52, 52);
+    height: 2em;
+    width: 6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2em;
+    position: absolute;
+    left: 10em;
+    top:0em;
+}
 
-    .mainContent{
+.newBage{
+    font-size: 18px;
+    color: white;
+    background-color: rgb(30, 212, 63);
+    height: 2em;
+    width:4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2em;
+    position: absolute;
+    left: -1em;
+    top:0em;
+}
+
+.new, .popular{
+    position: relative;
+}
+
+
+
+@media (max-width: 1481px) {
+
+    .mainContent {
         justify-content: center;
         display: flex;
         flex-direction: column;
 
         /* padding-top: 2200px;
         padding-bottom: 2200px; */
-    } 
+    }
 
 }
 
-@media (max-width: 1172px){
+@media (max-width: 1172px) {
 
-    .mainContent{
+    .mainContent {
         /* padding-top: 2900px;
         padding-bottom: 2900px; */
 
@@ -582,7 +623,7 @@ color: rgb(80, 79, 79);
         flex-direction: column;
     }
 
-  
+
 
 }
 
@@ -604,7 +645,7 @@ color: rgb(80, 79, 79);
 /* to bigger 1000 1010 */
 @media (max-width: 1003px) {
 
-    
+
 
     /* .roundB {
         border-radius: 50%;
@@ -622,11 +663,11 @@ color: rgb(80, 79, 79);
        
     } */
 
-    .headerInfo{
+    .headerInfo {
         display: none;
     }
 
-    .downSectionOrderSection{
+    .downSectionOrderSection {
         padding-left: 2em;
     }
 
@@ -649,18 +690,18 @@ color: rgb(80, 79, 79);
         flex-grow: 1;
 
     }
-    
+
     /* .navigation{
         display: none;
     } */
 
-    .mainContent{
+    .mainContent {
         justify-content: center;
         display: flex;
         flex-direction: column;
     }
 
-    .productList{
+    .productList {
         display: flex;
         flex-direction: column;
     }
@@ -687,7 +728,7 @@ color: rgb(80, 79, 79);
         padding: 0em 0.7em;
     } */
 
-    .headerPizza{
+    .headerPizza {
         display: none;
     }
 }

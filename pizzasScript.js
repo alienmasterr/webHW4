@@ -225,6 +225,25 @@ function createPizzaHTML(pizza) {
     pizzaDiv.appendChild(pizzaType);
     pizzaDiv.appendChild(pizzaContent);
 
+    const newBage = document.createElement('div');
+    newBage.classList.add('newBage');
+    const newBageSpan = document.createElement('span');
+    newBageSpan.textContent = 'Нова';
+    newBage.appendChild(newBageSpan);
+
+    const popularBage = document.createElement('div');
+    popularBage.classList.add('popularBage');
+    const popularBageSpan = document.createElement('span');
+    popularBageSpan.textContent = 'Популярна';
+    popularBage.appendChild(popularBageSpan);
+
+    if(pizza.is_new){
+        pizzaDiv.appendChild(newBage);
+    }
+    if(pizza.is_popular){
+        pizzaDiv.appendChild(popularBage);
+    }
+
     const pizzaInfo = document.createElement('div');
     pizzaInfo.classList.add('pizzaInfo');
 
@@ -304,13 +323,12 @@ const mushroomPizzaContainer = document.getElementById('mushroomPizzaContainer')
 const vegaPizzaContainer = document.getElementById('vegaPizzaContainer');
 
 
-const uniquePizzas = new Set(); // To store unique pizzas already added
+const uniquePizzas = new Set();
 
 pizza_info.forEach(pizza => {
-    // Add to pizzaContainer
+   
     pizzaContainer.appendChild(createPizzaHTML(pizza));
 
-    // Check if pizza type is unique and add to respective container
     if (!uniquePizzas.has(pizza.id)) {
         switch (pizza.type) {
             case 'Морська піца':
@@ -322,14 +340,14 @@ pizza_info.forEach(pizza => {
             case 'Вега піца':
                 vegaPizzaContainer.appendChild(createPizzaHTML(pizza));
                 break;
-            case 'З грибами': // assuming this type doesn't exist, handle it or remove the line
+            case 'З грибами':
                 mushroomPizzaContainer.appendChild(createPizzaHTML(pizza));
                 break;
             default:
-                console.warn(`Unknown pizza type: ${pizza.type}`); // handle unknown types (optional)
+                console.warn(`Unknown pizza type: ${pizza.type}`);
         }
 
-        uniquePizzas.add(pizza.id); // Mark pizza as added
+        uniquePizzas.add(pizza.id); 
     }
 });
 
@@ -511,19 +529,6 @@ function createPriceAndButtonsBlock(priceText, quantity) {
 const deleteOrder = function (ord) {
    money.textContent = parseInt(money.textContent) - parseInt(ord.querySelector('.orderTextSpan').textContent) * parseInt(ord.querySelector('.orderTextSpan:nth-of-type(2)').textContent);
     
-   // const pizzaPrice = parseInt(ord.querySelector('.orderTextSpan').textContent);
-   // const pizzaQuantity = parseInt(ord.querySelector('.orderTextSpan:nth-of-type(2)').textContent);
-   
-   // alert(totalm)
-    
-    
-   // const totalPriceToDeduct = pizzaPrice * pizzaQuantity;
-    //totalm -= totalPriceToDeduct;
-    
-    //localStorage.setItem('total', totalm);
-    
-   // money.textContent = totalm;
-    
     ord.remove();
     decreaseNumberOfOrders();
 
@@ -593,8 +598,6 @@ const clearOrder = function () {
 
 function clearLocalStorage() {
     localStorage.clear();
-    //localStorage.getItem('total') = 0;
-    //money.textContent =localStorage.getItem('total');
     
 }
 
