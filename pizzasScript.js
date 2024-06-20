@@ -662,3 +662,7 @@ const orderButton = document.querySelector('.orderButton');
 orderButton.addEventListener('click', function(){
     window.open('index.html', '_blank');
 });
+
+document.querySelector('.close-btn').addEventListener('click', function(){
+    document.querySelector('.screamer').classList.add('hide');
+});
