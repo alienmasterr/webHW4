@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 rows: [{ uniqueName: "pizzaName" }],
                 columns: [{ uniqueName: "string" }],
                 measures: [
-                    { uniqueName: "pizzaPrice", aggregation: "sum", caption: "Total Price" },
-                    { uniqueName: "quantity", aggregation: "sum", caption: "Total Quantity" }
+                    { uniqueName: "pizzaPrice", aggregation: "sum", caption: " Price" },
+                    { uniqueName: "quantity", aggregation: "sum", caption: " Quantity" }
                 ],
                 expands: {
                     expandAll: true
